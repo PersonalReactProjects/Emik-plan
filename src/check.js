@@ -2,24 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
 import firebase from 'firebase/app';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom'
+
 import { createStore, applyMiddleware, compose } from 'redux'
-import rootReducer from './store/reducers/rootReducer'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createFirestoreInstance, reduxFirestore, getFirestore } from 'redux-firestore';
 import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
-import fbConfig from './config/fbConfig'
 
+import rootReducer from './store/reducers/rootReducer'
+
+import firebaseConfig from './config/firebaseConfig'
 
 const store = createStore(rootReducer,
     compose(
-        applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-        reduxFirestore(firebase, fbConfig)
+        applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
+        reduxFirestore(firebase, firebaseConfig)
     )
-    ); 
+);
 
 const rrfConfig = {
     userProfile: 'users',
@@ -33,18 +34,11 @@ const rrfProps = {
     createFirestoreInstance
 };
 
-
 ReactDOM.render(
-    <Provider store={store} >
+    <Provider store={store}>
         <ReactReduxFirebaseProvider {...rrfProps}>
-            <Router>
-                <App />
-            </Router>
+            <App />
         </ReactReduxFirebaseProvider>
-     </Provider>,
-    document.getElementById('root')
-    );
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    </Provider>,
+    document.getElementById("root")
+)
