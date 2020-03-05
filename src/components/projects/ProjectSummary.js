@@ -1,14 +1,23 @@
 import React from 'react'
-//import projectReducer from '../../store/reducers/projectReducer'
+import moment from 'moment'
 
-export default function ProjectSummary({project}) {
-    return (
+export default function ProjectSummary({ project }) {
+    if (project) {
+        return (
             <div className="card z-depth-0 project-summary">
                 <div className="card-content grey-text text-darken-3">
-                <span className="card-title">{project.title}</span>
-                    <p>Posted by Emik Lad</p>
-                    <p className="gray-text">3rd September, 2am</p>
+                    <span className="card-title">{project.title}</span>
+                    <p>Posted by {project.authorFirstName} {project.authorLastName}</p>
+                    <p className="gray-text">{moment(project.createdAt.toDate()).calendar()}</p>
                 </div>
             </div>
-    )
+        )
+    }
+    else {
+        return (
+            <div className="container">
+                <p>project loading...</p>
+            </div>
+        )
+    }
 }

@@ -6,14 +6,14 @@ import 'firebase/firestore'
 
 
 var firebaseConfig = {
-    apiKey: "AIzaSyA4P24Bu_Q8Woe60uGHXxAl7px7Ercn1yI",
+    apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "emik-plan.firebaseapp.com",
-    databaseURL: "https://emik-plan.firebaseio.com",
+    databaseURL: process.env.REACT_APP_DB_URL,
     projectId: "emik-plan",
     storageBucket: "emik-plan.appspot.com",
-    messagingSenderId: "685990600697",
-    appId: "1:685990600697:web:edc53210d112d066556728",
-    measurementId: "G-ZRBS8WNG0R"
+    messagingSenderId: process.env.REACT_APP_MSSG_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASURE
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

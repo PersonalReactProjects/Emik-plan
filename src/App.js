@@ -25,7 +25,6 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/project/:id" component={ProjectDetails} />
-            <Route exact path="/project/:id" component={ProjectDetails} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/create" component={CreateProject} />
